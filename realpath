@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# 
+# realpath - Convert a relative path to an absolute path. Also verifies whether path/file exists.
+#            For each path specified which exists, it prints the full path to STDOUT and returns 0
+#            if all paths exist on any error or if any path doesn't exist.
+# 
+# Based on http://www.linuxquestions.org/questions/programming-9/bash-script-return-full-path-and-filename-680368/page2.html#post4239549
+# 
+# v0.1   2012-02-18 - Morgan Aldridge <morgant@makkintosshu.com>
+# 
+
+# print usage instructions (help)
+function usage() {
+	echo "Usage: realpath [options] path [...]"
+	echo "  -h		print these usage instructions"
+}
+
+function realpath()
+{
+	local success=true
+	
+	# start with the file name (sans the trailing slash)
+	local path="$1"
+	path="${path%/}"
+	
+	# get the basename of the file (ignoring '.' & '..', because they're really part of the path)
+	local file_basename="${path##*/}"
+	if [[ ( "$file_basename" = "." ) || ( "$file_basename" = ".." ) ]]; then
+		file_basename=""
+	fi
+	
+	# extracts the directory component of the full path & attempt to change to it
+	local directory="${path%$file_basename}"
+	if [ "$directory" ]; then
+	  if ! cd "$directory" &>/dev/null ; then
+	  	success=false
+	  fi
+	fi
+	
+	if $success; then
+		# does the filename exist?
+		if [[ ( ! -z "$file_basename" ) && ( ! -e "$file_basename" ) ]]; then
+			success=false
+		fi
+		
+		# get the absolute path of the current directory & change back to previous directory
+		local abs_path="$(pwd -P)"
+		cd "-" &>/dev/null
+		  
+		# Append base filename to absolute path
+		abs_path="${abs_path}/${file_basename}"
+		
+		# output the absolute path
+		echo "$abs_path"
+	fi
+	
+	$success
+}
+
+# see if any arguments were passed in
+success=true
+if [ $# -gt 0 ]; then
+	# if so, step through them all and process them
+	while [ $# -gt 0 ]; do
+		# see if the user requested help
+		if [ "$1" = "-h" ]; then
+			usage
+			$success
+		else
+			# try determine the absolute path for each path specified
+			path=$(realpath "$1")
+			if [ $? -ne 0 ]; then
+				success=false
+			fi
+			echo "$path"
+			shift
+		fi
+	done
+else
+	printf "No paths were specified to be converted to absolute paths.\n\n"
+	usage
+	success=false
+fi
+
+$success
