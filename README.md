@@ -10,6 +10,11 @@ A portable `realpath()` written in `bash`. The `realpath()` function in C (and m
 
 This is a simple implementation, originally based on [this solution](http://www.linuxquestions.org/questions/programming-9/bash-script-return-full-path-and-filename-680368/page2.html#post4239549), which uses `pwd`. Pass it one or more relative (or absolute, but that's somewhat pointless) file/directory paths and, if it exists, it'll output the absolute path to STDOUT. It'll also return 0 if successful or 1 if unsuccessful (also meaning the file/directory path doesn't exist).
 
+UNIT TESTS
+----------
+
+Unit tests are implemented using [`roundup`](https://github.com/bmizerany/roundup). These tests can be run by executing `roundup` in the 'realpath' project directory (it'll automatically find and run the `realpath-test.sh` tests). If you discover any failing tests on your platform or any additional edge cases that should be tested, please let me know ASAP.
+
 LICENSE
 -------
 
