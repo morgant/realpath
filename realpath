@@ -110,7 +110,7 @@ if [ $# -gt 0 ]; then
 		# see if the user requested help
 		if [ "$1" = "-h" ]; then
 			usage
-			$success
+			exit 0
 		else
 			# try determine the absolute path for each path specified
 			path=$(realpath "$1")
