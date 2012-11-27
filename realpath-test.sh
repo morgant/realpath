@@ -2,6 +2,14 @@
 
 describe "realpath"
 
+before() {
+	touch tmp
+}
+
+after() {
+	rm tmp
+}
+
 it_displays_usage() {
 	out="$(./realpath -h | head -n 1)"
 	test "$out" = "Usage: realpath [options] path [...]"
@@ -54,9 +62,18 @@ it_converts_local_paths() {
 }
 
 it_converts_local_paths_which_exist_in_root_path() {
-	false
+	cwd="$(pwd)"
+	
+	rel_path="tmp"
+	abs_path="${cwd}/${rel_path}"
+	out_path="$(./realpath "$rel_path")"
+	
+	test "$out_path" = "$abs_path"
 }
 
 it_fails_for_nonexistent_paths() {
-	false
+	rel_path="/usr/local/mojo-jojo/but_first--i_must_attend_to_the_dishes_that_i_have_soiled_with_the_food_that_i_have_eaten"
+	out=$(set +e ; ./realpath "$rel_path" >/dev/null ; echo $?)
+	
+	test $out -gt 0
 }
