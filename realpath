@@ -16,6 +16,9 @@
 #                     Fixes to incorrect absolute paths output for '/' and any
 #                     file or directory which is an immediate child of '/' (when
 #                     input as an absolute path).
+# v0.3   2012-11-29 - Morgan Aldridge
+#                     Fix for infinite loop in usage option and local paths 
+#                     incorrectly assumed to be in root directory.
 # 
 # LICENSE:
 # 
@@ -60,16 +63,21 @@ function realpath()
 		# start with the file name (sans the trailing slash)
 		path="${path%/}"
 		
+		# if we stripped off the trailing slash and were left with nothing, that means we're in the root directory
+		if [ -z "$path" ]; then
+			path="/"
+		fi
+		
 		# get the basename of the file (ignoring '.' & '..', because they're really part of the path)
 		local file_basename="${path##*/}"
 		if [[ ( "$file_basename" = "." ) || ( "$file_basename" = ".." ) ]]; then
 			file_basename=""
 		fi
 		
-		# extracts the directory component of the full path, if it's empty then assume '/'
+		# extracts the directory component of the full path, if it's empty then assume '.' (the current working directory)
 		local directory="${path%$file_basename}"
 		if [ -z "$directory" ]; then
-			directory='/'
+			directory='.'
 		fi
 		
 		# attempt to change to the directory
