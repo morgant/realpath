@@ -3,6 +3,8 @@ realpath
 
 by Morgan Aldridge <morgant@makkintosshu.com>
 
+[![realpath on Ohloh](https://www.ohloh.net/p/realpath/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/realpath)
+
 OVERVIEW
 --------
 
