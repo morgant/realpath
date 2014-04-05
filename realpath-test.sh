@@ -42,7 +42,7 @@ it_converts_dotted_relative_paths() {
 
 it_converts_dot_path_to_cwd() {
 	rel_path="."
-	abs_path="$(pwd)/"
+	abs_path="$(pwd)"
 	out_path="$(./realpath "$rel_path")"
 	
 	test "$out_path" = "$abs_path"
