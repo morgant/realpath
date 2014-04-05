@@ -19,6 +19,9 @@
 # v0.3   2012-11-29 - Morgan Aldridge
 #                     Fix for infinite loop in usage option and local paths 
 #                     incorrectly assumed to be in root directory.
+# v0.4   2014-04-05 - Morgan Aldridge
+#                     Increased compatibility by matching GNU realpath output
+#                     for relative paths. (Thanks to https://github.com/jlsantiago0)
 # 
 # LICENSE:
 # 
