@@ -4,6 +4,6 @@ install:
     - cd bmizerany-roundup-5c5dcb1
     - ./configure
     - make
-    - make install
+    - sudo make install
 script:
     - roundup 
