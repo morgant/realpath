@@ -1,7 +1,7 @@
 language: bash
 install:
-	- curl -L https://github.com/bmizerany/roundup/tarball/v0.0.5 | tar xvzf -
-	- ./configure
-	- make
+    - curl -L https://github.com/bmizerany/roundup/tarball/v0.0.5 | tar xvzf -
+    - ./configure
+    - make
 script:
-	- bash roundup 
+    - bash roundup 
