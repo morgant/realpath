@@ -3,7 +3,7 @@ realpath
 
 by Morgan Aldridge <morgant@makkintosshu.com>
 
-[![realpath on OpenHub](https://www.openhub.net/p/realpath/widgets/project_thin_badge.gif)](https://www.openhub.net/p/realpath) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBY3R8ARLDELE&currency_code=USD&source=url)
+[![realpath on OpenHub](https://www.openhub.net/p/realpath/widgets/project_thin_badge.gif)](https://www.openhub.net/p/realpath) [![Build Status](https://travis-ci.com/morgant/realpath.svg?branch=master)](https://travis-ci.com/morgant/realpath) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=DBY3R8ARLDELE&currency_code=USD&source=url)
 
 OVERVIEW
 --------
