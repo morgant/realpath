@@ -98,6 +98,8 @@ function realpath()
                 # get the absolute path of the current directory & change back to previous directory
                 local abs_path="$(pwd -P)"
                 cd "-" &>/dev/null
+		
+		local abs_path_bak="$abs_path"
                 
                 # Append base filename to absolute path
                 if [ "${abs_path}" = "/" ]; then
