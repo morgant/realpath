@@ -86,6 +86,7 @@ it_fails_for_relative_home_paths() {
 }
 
 it_follows_symlink() {
+	cmd="$(pwd)/realpath"
 	dir="$(mktemp -d)"
 	cd "$dir"
 	mkdir -p tmp
@@ -94,7 +95,7 @@ it_follows_symlink() {
 	
 	rel_path="tmp/symlink"
 	abs_path="${cwd}"
-	out_path="$(./realpath "$rel_path")"
+	out_path="$("$cmd" "$rel_path")"
 	
 	test "$out_path" = "$abs_path"
 }
