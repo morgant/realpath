@@ -119,6 +119,7 @@ function realpath()
 
                 # output the absolute path
                 echo "$abs_path"
+		break
             fi
         done
 	fi
