@@ -84,3 +84,17 @@ it_fails_for_relative_home_paths() {
 	
 	test $out -gt 0
 }
+
+it_follows_symlink() {
+	dir="$(mktemp -d)"
+	cd "$dir"
+	mkdir -p tmp
+	ln -s .. ./tmp/symlink
+	cwd="$(pwd)"
+	
+	rel_path="tmp/symlink"
+	abs_path="${cwd}"
+	out_path="$(./realpath "$rel_path")"
+	
+	test "$out_path" = "$abs_path"
+}
