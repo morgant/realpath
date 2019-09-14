@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 
 # realpath - Convert a relative path to an absolute path. Also verifies whether
@@ -22,10 +22,12 @@
 # v0.4   2014-04-05 - Morgan Aldridge
 #                     Increased compatibility by matching GNU realpath output
 #                     for relative paths. (Thanks to https://github.com/jlsantiago0)
+# v0.4.1 2019-09-14 - Morgan Aldridge
+#                     Better *nix compatibility (tested OpenBSD).
 # 
 # LICENSE:
 # 
-# Copyright (c) 2012, Morgan T. Aldridge. All rights reserved.
+# Copyright (c) 2012-2019, Morgan T. Aldridge. All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 
 # modification, are permitted provided that the following conditions are met:
