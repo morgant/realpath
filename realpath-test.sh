@@ -79,7 +79,7 @@ it_fails_for_relative_home_paths() {
 	user="$(whoami)"
 	
 	rel_path="~/Desktop/"
-	abs_path="/Users/${user}/Desktop/"
+	abs_path="${HOME}/Desktop/"
 	out=$(set +e ; ./realpath "$rel_path" >/dev/null ; echo $?)
 	
 	test $out -gt 0
