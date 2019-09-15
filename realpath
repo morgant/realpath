@@ -24,6 +24,8 @@
 #                     for relative paths. (Thanks to https://github.com/jlsantiago0)
 # v0.4.1 2019-09-14 - Morgan Aldridge
 #                     Better *nix compatibility (tested OpenBSD).
+# v0.5   2019-09-15 - Morgan Aldridge
+#                     Fix for invalid paths outputting root path.
 # 
 # LICENSE:
 # 
