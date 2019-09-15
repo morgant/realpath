@@ -129,8 +129,9 @@ if [ $# -gt 0 ]; then
 			path=$(realpath "$1")
 			if [ $? -ne 0 ]; then
 				success=false
+			else
+				echo "$(dirname "$path"/.)"
 			fi
-			echo "$(dirname "$path"/.)"
 			shift
 		fi
 	done
