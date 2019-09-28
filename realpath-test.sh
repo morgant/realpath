@@ -84,3 +84,34 @@ it_fails_for_relative_home_paths() {
 	
 	test $out -gt 0
 }
+
+it_converts_file_symlinks() {
+	cwd="$(pwd)"
+
+	ln -s tmp stmp
+
+	rel_path="stmp"
+        abs_path="${cwd}/$(readlink "$rel_path")"
+	out_path="$(./realpath "$rel_path")"
+
+	rm stmp
+
+	test "$out_path" = "$abs_path"
+}
+
+it_converts_symlinks_in_paths() {
+	cwd="$(pwd)"
+
+	mkdir tmpdir
+	touch tmpdir/tmp
+	ln -s tmpdir stmpdir
+
+	rel_path="stmpdir/tmp"
+	abs_path="${cwd}/tmpdir/tmp"
+	out_path="$(./realpath "$rel_path")"
+
+	rm stmpdir
+	rm -r tmpdir
+
+	test "$out_path" = "$abs_path"
+}
